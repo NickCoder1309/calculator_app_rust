@@ -1,5 +1,5 @@
 use gtk::prelude::*;
-use gtk::{Application, ApplicationWindow, Button, CssProvider, Entry, Grid, gdk};
+use gtk::{Application, ApplicationWindow, Button, CssProvider, Entry, Grid, gdk, glib::clone};
 
 fn on_activate(application: &Application) {
     // … create a new window …
@@ -36,54 +36,210 @@ fn on_activate(application: &Application) {
     let mut extras_vector: Vec<&mut Button> = Vec::new();
 
     let mut button_0 = Button::builder().label("0").build();
+    button_0.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "0";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_0);
 
     let mut button_1 = Button::builder().label("1").build();
+    button_1.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "1";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_1);
 
     let mut button_2 = Button::builder().label("2").build();
+    button_2.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "2";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_2);
 
     let mut button_3 = Button::builder().label("3").build();
+    button_3.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "3";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_3);
 
     let mut button_4 = Button::builder().label("4").build();
+    button_4.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "4";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_4);
 
     let mut button_5 = Button::builder().label("5").build();
+    button_5.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "5";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_5);
 
     let mut button_6 = Button::builder().label("6").build();
+    button_6.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "6";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_6);
 
     let mut button_7 = Button::builder().label("7").build();
+    button_7.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "7";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_7);
 
     let mut button_8 = Button::builder().label("8").build();
+    button_8.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "8";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_8);
 
     let mut button_9 = Button::builder().label("9").build();
+    button_9.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "9";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     numbers_vector.push(&mut button_9);
 
     let mut erase_one_button = Button::builder().label("<-").build();
+    erase_one_button.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let mut initial_text = main_entry.text().to_string();
+            initial_text.pop();
+            main_entry.set_text(&initial_text);
+        }
+    ));
     extras_vector.push(&mut erase_one_button);
 
     let mut clean_button = Button::builder().label("AC").build();
+    clean_button.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            main_entry.set_text("");
+        }
+    ));
     extras_vector.push(&mut clean_button);
 
     let mut percentage_button = Button::builder().label("%").build();
     extras_vector.push(&mut percentage_button);
 
     let mut division_button = Button::builder().label("/").build();
+    division_button.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "/";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     operators_vector.push(&mut division_button);
 
     let mut multiply_button = Button::builder().label("X").build();
+    multiply_button.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "x";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     operators_vector.push(&mut multiply_button);
 
     let mut substract_button = Button::builder().label("-").build();
+    substract_button.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "-";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     operators_vector.push(&mut substract_button);
 
     let mut addition_button = Button::builder().label("+").build();
+    addition_button.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let text_to_add = "+";
+            let final_text = initial_text + text_to_add;
+            main_entry.set_text(&final_text);
+        }
+    ));
     operators_vector.push(&mut addition_button);
 
     let mut equal_button = Button::builder().label("=").build();
@@ -132,16 +288,17 @@ fn main() {
         css_numbers_provider.load_from_string(
             "
             .round-btn-numbers {
-                background: #696969;
+                background: #191970;
                 color: white;
                 border-radius: 50%;
                 min-width: 80 px;
                 min-height: 80 px;
                 font-weight: bold;
                 border: none;
+                transition: background 20ms ease-in-out;
             }
 
-            .round-btn-numbers:hover {
+            .round-btn-numbers:active {
                 background: #000000;
             }
             ",
@@ -158,9 +315,10 @@ fn main() {
                 min-height: 80 px;
                 font-weight: bold;
                 border: none;
+                transition: background 20ms ease-in-out
             }
 
-            .round-btn-operators:hover {
+            .round-btn-operators:active {
                 background: #FF8C00;
             }
             ",
@@ -170,17 +328,18 @@ fn main() {
         css_extras_provider.load_from_string(
             "
             .round-btn-extras {
-                background: #DCDCDC;
+                background: #808080;
                 color: white;
                 border-radius: 50%;
                 min-width: 80 px;
                 min-height: 80 px;
                 font-weight: bold;
                 border: none;
+                transition: background 20ms ease-in-out
             }
 
-            .round-btn-extras:hover {
-                background: #778899;
+            .round-btn-extras:active {
+                background: #696969;
             }
             ",
         );
