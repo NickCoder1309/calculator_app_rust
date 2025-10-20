@@ -196,9 +196,15 @@ fn on_activate(application: &Application) {
         main_entry,
         move |_| {
             let initial_text = main_entry.text().to_string();
-            let text_to_add = "/";
-            let final_text = initial_text + text_to_add;
-            main_entry.set_text(&final_text);
+            let final_char_position = initial_text.len() - 1;
+            if !matches!(
+                &initial_text.chars().nth(final_char_position).unwrap(),
+                '+' | '-' | '/' | 'x'
+            ) {
+                let text_to_add = "/";
+                let final_text = initial_text + text_to_add;
+                main_entry.set_text(&final_text);
+            }
         }
     ));
     operators_vector.push(&mut division_button);
@@ -209,9 +215,15 @@ fn on_activate(application: &Application) {
         main_entry,
         move |_| {
             let initial_text = main_entry.text().to_string();
-            let text_to_add = "x";
-            let final_text = initial_text + text_to_add;
-            main_entry.set_text(&final_text);
+            let final_char_position = initial_text.len() - 1;
+            if !matches!(
+                &initial_text.chars().nth(final_char_position).unwrap(),
+                '+' | '-' | '/' | 'x'
+            ) {
+                let text_to_add = "x";
+                let final_text = initial_text + text_to_add;
+                main_entry.set_text(&final_text);
+            }
         }
     ));
     operators_vector.push(&mut multiply_button);
@@ -222,9 +234,15 @@ fn on_activate(application: &Application) {
         main_entry,
         move |_| {
             let initial_text = main_entry.text().to_string();
-            let text_to_add = "-";
-            let final_text = initial_text + text_to_add;
-            main_entry.set_text(&final_text);
+            let final_char_position = initial_text.len() - 1;
+            if !matches!(
+                &initial_text.chars().nth(final_char_position).unwrap(),
+                '+' | '-' | '/' | 'x'
+            ) {
+                let text_to_add = "-";
+                let final_text = initial_text + text_to_add;
+                main_entry.set_text(&final_text);
+            }
         }
     ));
     operators_vector.push(&mut substract_button);
@@ -235,14 +253,21 @@ fn on_activate(application: &Application) {
         main_entry,
         move |_| {
             let initial_text = main_entry.text().to_string();
-            let text_to_add = "+";
-            let final_text = initial_text + text_to_add;
-            main_entry.set_text(&final_text);
+            let final_char_position = initial_text.len() - 1;
+            if !matches!(
+                &initial_text.chars().nth(final_char_position).unwrap(),
+                '+' | '-' | '/' | 'x'
+            ) {
+                let text_to_add = "+";
+                let final_text = initial_text + text_to_add;
+                main_entry.set_text(&final_text);
+            }
         }
     ));
     operators_vector.push(&mut addition_button);
 
     let mut equal_button = Button::builder().label("=").build();
+
     operators_vector.push(&mut equal_button);
 
     //Set buttons styles
