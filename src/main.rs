@@ -1,3 +1,4 @@
+use exp_rs::engine::interp;
 use gtk::prelude::*;
 use gtk::{Application, ApplicationWindow, Button, CssProvider, Entry, Grid, gdk, glib::clone};
 
@@ -267,7 +268,16 @@ fn on_activate(application: &Application) {
     operators_vector.push(&mut addition_button);
 
     let mut equal_button = Button::builder().label("=").build();
-
+    equal_button.connect_clicked(clone!(
+        #[weak]
+        main_entry,
+        move |_| {
+            let initial_text = main_entry.text().to_string();
+            let final_exp = convert_to_readable_exp(&initial_text);
+            let final_text = interp(&final_exp, None).unwrap();
+            main_entry.set_text(&final_text.to_string());
+        }
+    ));
     operators_vector.push(&mut equal_button);
 
     //Set buttons styles
@@ -410,4 +420,16 @@ fn set_buttons_style(
         element.set_vexpand(true);
         element.add_css_class(css_class);
     }
+}
+
+fn convert_to_readable_exp(input: &str) -> String {
+    let mut input_vector: Vec<char> = Vec::new();
+    for character in input.chars() {
+        if character == 'x' {
+            input_vector.push('*');
+        } else {
+            input_vector.push(character);
+        }
+    }
+    input_vector.into_iter().collect()
 }
